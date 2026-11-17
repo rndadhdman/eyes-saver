@@ -31,7 +31,10 @@ modules:
       - install -Dm644 linux/io.github.eyessaver.EyesSaver.desktop /app/share/applications/io.github.eyessaver.EyesSaver.desktop
       - install -Dm644 linux/io.github.eyessaver.EyesSaver.metainfo.xml /app/share/metainfo/io.github.eyessaver.EyesSaver.metainfo.xml
       - for size in 16 24 32 48 64 128 256 512; do install -Dm644 icons/eyessaver-$size.png /app/share/icons/hicolor/${size}x${size}/apps/io.github.eyessaver.EyesSaver.png; done
+      - install -Dm644 LICENSE /app/share/licenses/io.github.eyessaver.EyesSaver/LICENSE
     sources:
+      - type: file
+        path: ../LICENSE
       - type: dir
         path: ../app
         dest: app

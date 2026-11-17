@@ -5,7 +5,7 @@
     <PublishDir Condition="'$(PublishDir)' == ''">$(MSBuildThisFileDirectory)..\..\artifacts\publish\win-x64\</PublishDir>
     <OutputName>EyesSaver-$(ProductVersion)-win-x64</OutputName>
     <InstallerPlatform>x64</InstallerPlatform>
-    <DefineConstants>ProductVersion=$(ProductVersion);PublishDir=$([MSBuild]::EnsureTrailingSlash('$(PublishDir)'));IconFile=$(MSBuildThisFileDirectory)..\..\src\EyesSaver.App\Assets\EyesSaver.ico</DefineConstants>
+    <DefineConstants>ProductVersion=$(ProductVersion);PublishDir=$([MSBuild]::EnsureTrailingSlash('$(PublishDir)'));IconFile=$(MSBuildThisFileDirectory)..\..\src\EyesSaver.App\Assets\EyesSaver.ico;LicenseFile=$(MSBuildThisFileDirectory)..\..\LICENSE</DefineConstants>
     <SuppressValidation>false</SuppressValidation>
   </PropertyGroup>
 

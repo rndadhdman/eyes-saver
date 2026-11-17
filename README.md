@@ -6,6 +6,13 @@ remembered.
 
 Runs on Windows 10/11 and on Linux (X11, or Wayland through XWayland).
 
+**Download:** [latest release](https://github.com/rndadhdman/eyes-saver/releases/latest)
+
+## License
+
+[MIT](LICENSE). Bundled components: .NET runtime, Avalonia, SkiaSharp and HarfBuzzSharp (all MIT)
+and the Inter font (SIL Open Font License 1.1).
+
 ## Packages
 
 `.\build.ps1` builds everything into `dist\`:

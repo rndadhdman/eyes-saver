@@ -22,6 +22,7 @@ install -m755 "$SRC/app/EyesSaver" "$PORTABLE/EyesSaver"
 install -m644 "$SRC"/app/*.so "$PORTABLE/"
 install -m644 "$SRC/icons/eyessaver-256.png" "$PORTABLE/eyessaver.png"
 install -m644 "$SRC/linux/README-portable.txt" "$PORTABLE/README.txt"
+install -m644 "$SRC/LICENSE" "$PORTABLE/LICENSE"
 printf '%s\n' \
   "Eyes Saver keeps its settings in this folder because the folder exists." \
   "Delete it to keep settings in ~/.config/eyessaver instead." > "$PORTABLE/data/README.txt"
@@ -47,11 +48,16 @@ done
 cat > "$ROOT/usr/share/doc/eyessaver/copyright" <<EOF
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Eyes Saver
+Source: https://github.com/rndadhdman/eyes-saver
+
 Files: *
-Copyright: Eyes Saver authors
-License: proprietary
- Bundles the .NET runtime (MIT), Avalonia (MIT), SkiaSharp and HarfBuzzSharp (MIT)
- and the Inter font (SIL Open Font License 1.1).
+Copyright: 2026 rndadhdman
+License: MIT
+Comment: Bundles the .NET runtime (MIT), Avalonia (MIT), SkiaSharp and
+ HarfBuzzSharp (MIT) and the Inter font (SIL Open Font License 1.1).
+
+License: MIT
+$(sed 's/^$/./; s/^/ /' "$SRC/LICENSE")
 EOF
 
 INSTALLED_SIZE=$(du -sk --exclude=DEBIAN "$ROOT" | cut -f1)
@@ -62,7 +68,8 @@ Section: utils
 Priority: optional
 Architecture: amd64
 Installed-Size: $INSTALLED_SIZE
-Maintainer: Eyes Saver <eyessaver@users.noreply.invalid>
+Maintainer: rndadhdman <13965470+rndadhdman@users.noreply.github.com>
+Homepage: https://github.com/rndadhdman/eyes-saver
 Depends: libc6 (>= 2.27), libstdc++6, libgcc-s1, libfontconfig1, libx11-6, libxext6, libxrandr2, libxi6, libxcursor1, libice6, libsm6
 Recommends: libgl1
 Suggests: picom

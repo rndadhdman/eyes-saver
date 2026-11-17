@@ -69,6 +69,7 @@ Remove-Item -Recurse -Force $portableRoot -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force (Join-Path $portable 'data') | Out-Null
 Copy-Item (Join-Path $winPublish 'EyesSaver.exe') $portable
 Copy-Item (Join-Path $root 'packaging\windows\README-portable.txt') (Join-Path $portable 'README.txt')
+Copy-Item (Join-Path $root 'LICENSE') (Join-Path $portable 'LICENSE.txt')
 Set-Content -Encoding utf8 (Join-Path $portable 'data\README.txt') @(
     'Eyes Saver keeps its settings in this folder because the folder exists.',
     'Delete it to keep settings in %LOCALAPPDATA%\EyesSaver instead.')
@@ -93,9 +94,10 @@ if (-not $SkipLinux) {
     Copy-Item -Recurse (Join-Path $root 'packaging\icons') (Join-Path $stage 'icons')
     Copy-Item -Recurse (Join-Path $root 'packaging\linux') (Join-Path $stage 'linux')
     Copy-Item -Recurse (Join-Path $root 'packaging\flatpak') (Join-Path $stage 'flatpak')
+    Copy-Item (Join-Path $root 'LICENSE') (Join-Path $stage 'LICENSE')
 
     # Scripts and desktop files must have Unix line endings.
-    Get-ChildItem $stage -Recurse -File -Include *.sh, *.yml, *.desktop, *.xml, *.txt | ForEach-Object {
+    Get-ChildItem $stage -Recurse -File -Include *.sh, *.yml, *.desktop, *.xml, *.txt, LICENSE | ForEach-Object {
         $text = [IO.File]::ReadAllText($_.FullName) -replace "`r`n", "`n"
         [IO.File]::WriteAllText($_.FullName, $text, (New-Object Text.UTF8Encoding $false))
     }

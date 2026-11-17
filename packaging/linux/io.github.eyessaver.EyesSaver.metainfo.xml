@@ -4,7 +4,9 @@
   <name>Eyes Saver</name>
   <summary>Tint every display to cut glare and blue light</summary>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>LicenseRef-proprietary</project_license>
+  <project_license>MIT</project_license>
+  <url type="homepage">https://github.com/rndadhdman/eyes-saver</url>
+  <url type="bugtracker">https://github.com/rndadhdman/eyes-saver/issues</url>
   <description>
     <p>
       Eyes Saver lays a warm, click-through color tint over each of your displays. Every
