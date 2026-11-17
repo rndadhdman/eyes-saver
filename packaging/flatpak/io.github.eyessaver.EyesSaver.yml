@@ -1,0 +1,43 @@
+app-id: io.github.eyessaver.EyesSaver
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+command: eyessaver
+
+finish-args:
+  # Overlays and key grabs are X11 features; on Wayland they go through XWayland.
+  - --socket=x11
+  - --share=ipc
+  - --device=dri
+  # Tray icon (StatusNotifierItem).
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --own-name=org.kde.*
+  # "Start when I log in" writes ~/.config/autostart/eyessaver.desktop.
+  - --filesystem=xdg-config/autostart:create
+
+modules:
+  - name: eyessaver
+    buildsystem: simple
+    build-options:
+      # The .NET single-file executable carries its code appended to the host binary.
+      # Stripping it would cut that off.
+      strip: false
+      no-debuginfo: true
+    build-commands:
+      - install -Dm755 app/EyesSaver /app/lib/eyessaver/EyesSaver
+      - install -Dm644 -t /app/lib/eyessaver app/libSkiaSharp.so app/libHarfBuzzSharp.so
+      - install -d /app/bin
+      - ln -s /app/lib/eyessaver/EyesSaver /app/bin/eyessaver
+      - install -Dm644 linux/io.github.eyessaver.EyesSaver.desktop /app/share/applications/io.github.eyessaver.EyesSaver.desktop
+      - install -Dm644 linux/io.github.eyessaver.EyesSaver.metainfo.xml /app/share/metainfo/io.github.eyessaver.EyesSaver.metainfo.xml
+      - for size in 16 24 32 48 64 128 256 512; do install -Dm644 icons/eyessaver-$size.png /app/share/icons/hicolor/${size}x${size}/apps/io.github.eyessaver.EyesSaver.png; done
+    sources:
+      - type: dir
+        path: ../app
+        dest: app
+      - type: dir
+        path: ../icons
+        dest: icons
+      - type: dir
+        path: ../linux
+        dest: linux

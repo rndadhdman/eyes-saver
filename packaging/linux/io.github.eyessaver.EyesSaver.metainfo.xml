@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.eyessaver.EyesSaver</id>
+  <name>Eyes Saver</name>
+  <summary>Tint every display to cut glare and blue light</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <description>
+    <p>
+      Eyes Saver lays a warm, click-through color tint over each of your displays. Every
+      display can have its own color and strength, and displays you plug in or out are picked up
+      automatically, with their settings remembered.
+    </p>
+    <ul>
+      <li>Presets from soft warm yellow to deep red, or any color you pick</li>
+      <li>Per-display or all-at-once settings, with a live map of your display layout</li>
+      <li>Keyboard shortcuts and command-line control (eyessaver --toggle)</li>
+      <li>Works with a compositor (overlay) or without one (display gamma)</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">io.github.eyessaver.EyesSaver.desktop</launchable>
+  <provides>
+    <binary>eyessaver</binary>
+  </provides>
+  <categories>
+    <category>Utility</category>
+    <category>Accessibility</category>
+  </categories>
+  <content_rating type="oars-1.1" />
+  <releases>
+    <release version="2.1.0" date="2026-11-17">
+      <description>
+        <p>First Linux release: X11 and XWayland, Flatpak and .deb packages.</p>
+      </description>
+    </release>
+  </releases>
+</component>

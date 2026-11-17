@@ -1,0 +1,11 @@
+* text=auto
+
+# Used inside Linux containers and packages: always LF.
+*.sh text eol=lf
+*.desktop text eol=lf
+*.yml text eol=lf
+*.metainfo.xml text eol=lf
+Dockerfile text eol=lf
+
+*.png binary
+*.ico binary

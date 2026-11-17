@@ -1,0 +1,156 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="EyesSaver.App.App"
+             Name="Eyes Saver"
+             RequestedThemeVariant="Default">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+          <SolidColorBrush x:Key="Es.Window" Color="#F3F1EE" />
+          <SolidColorBrush x:Key="Es.Surface" Color="#FFFFFF" />
+          <SolidColorBrush x:Key="Es.SurfaceHover" Color="#F5F3F0" />
+          <SolidColorBrush x:Key="Es.SurfaceSunken" Color="#ECE9E4" />
+          <SolidColorBrush x:Key="Es.Border" Color="#E0DCD6" />
+          <SolidColorBrush x:Key="Es.Text" Color="#1C1917" />
+          <SolidColorBrush x:Key="Es.TextMuted" Color="#6E6862" />
+          <SolidColorBrush x:Key="Es.Accent" Color="#D97706" />
+          <SolidColorBrush x:Key="Es.AccentHover" Color="#C26804" />
+          <SolidColorBrush x:Key="Es.AccentText" Color="#FFFFFF" />
+          <SolidColorBrush x:Key="Es.TrackOff" Color="#CCC7C0" />
+          <SolidColorBrush x:Key="Es.Bezel" Color="#34302C" />
+          <SolidColorBrush x:Key="Es.ScreenOff" Color="#C8C5C0" />
+          <SolidColorBrush x:Key="Es.Warning" Color="#B45309" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+          <SolidColorBrush x:Key="Es.Window" Color="#181716" />
+          <SolidColorBrush x:Key="Es.Surface" Color="#242220" />
+          <SolidColorBrush x:Key="Es.SurfaceHover" Color="#2E2C29" />
+          <SolidColorBrush x:Key="Es.SurfaceSunken" Color="#1C1B19" />
+          <SolidColorBrush x:Key="Es.Border" Color="#3A3733" />
+          <SolidColorBrush x:Key="Es.Text" Color="#F5F3F0" />
+          <SolidColorBrush x:Key="Es.TextMuted" Color="#A6A098" />
+          <SolidColorBrush x:Key="Es.Accent" Color="#F5A524" />
+          <SolidColorBrush x:Key="Es.AccentHover" Color="#FAB950" />
+          <SolidColorBrush x:Key="Es.AccentText" Color="#1C1917" />
+          <SolidColorBrush x:Key="Es.TrackOff" Color="#4E4A45" />
+          <SolidColorBrush x:Key="Es.Bezel" Color="#0E0D0C" />
+          <SolidColorBrush x:Key="Es.ScreenOff" Color="#5A5855" />
+          <SolidColorBrush x:Key="Es.Warning" Color="#FBBF24" />
+        </ResourceDictionary>
+      </ResourceDictionary.ThemeDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+
+  <Application.Styles>
+    <FluentTheme>
+      <FluentTheme.Palettes>
+        <ColorPaletteResources x:Key="Light" Accent="#D97706" RegionColor="#F3F1EE" />
+        <ColorPaletteResources x:Key="Dark" Accent="#F5A524" RegionColor="#181716" />
+      </FluentTheme.Palettes>
+    </FluentTheme>
+    <StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Fluent/Fluent.xaml" />
+
+    <!-- Text -->
+    <Style Selector="TextBlock.title">
+      <Setter Property="FontSize" Value="22" />
+      <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <Style Selector="TextBlock.section">
+      <Setter Property="FontSize" Value="15" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style Selector="TextBlock.strong">
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style Selector="TextBlock.muted">
+      <Setter Property="Foreground" Value="{DynamicResource Es.TextMuted}" />
+    </Style>
+    <Style Selector="TextBlock.small">
+      <Setter Property="FontSize" Value="12" />
+    </Style>
+    <Style Selector="TextBlock.warning">
+      <Setter Property="Foreground" Value="{DynamicResource Es.Warning}" />
+    </Style>
+
+    <!-- Cards -->
+    <Style Selector="Border.card">
+      <Setter Property="Background" Value="{DynamicResource Es.Surface}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Es.Border}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="Padding" Value="18,14" />
+    </Style>
+
+    <!-- Secondary buttons -->
+    <Style Selector="Button.secondary">
+      <Setter Property="Padding" Value="14,6" />
+      <Setter Property="CornerRadius" Value="6" />
+      <Setter Property="Background" Value="{DynamicResource Es.SurfaceHover}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Es.Border}" />
+      <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Button.secondary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource Es.SurfaceHover}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Es.Accent}" />
+    </Style>
+    <Style Selector="Button.ghost">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Foreground" Value="{DynamicResource Es.TextMuted}" />
+    </Style>
+    <Style Selector="Button.ghost:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource Es.SurfaceHover}" />
+      <Setter Property="Foreground" Value="{DynamicResource Es.Text}" />
+    </Style>
+
+    <!-- Display chips -->
+    <Style Selector="Button.chip">
+      <Setter Property="Padding" Value="12,5" />
+      <Setter Property="Margin" Value="0,0,6,6" />
+      <Setter Property="CornerRadius" Value="14" />
+      <Setter Property="MinHeight" Value="30" />
+      <Setter Property="Background" Value="{DynamicResource Es.SurfaceSunken}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Es.Border}" />
+      <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Button.chip:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource Es.SurfaceHover}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Es.Accent}" />
+    </Style>
+    <Style Selector="Button.chip.selected /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource Es.Accent}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Es.Accent}" />
+      <Setter Property="Foreground" Value="{DynamicResource Es.AccentText}" />
+    </Style>
+    <Style Selector="Button.chip.selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource Es.AccentHover}" />
+      <Setter Property="Foreground" Value="{DynamicResource Es.AccentText}" />
+    </Style>
+
+    <!-- Color swatches -->
+    <Style Selector="Button.swatch">
+      <Setter Property="Width" Value="40" />
+      <Setter Property="Height" Value="40" />
+      <Setter Property="Padding" Value="3" />
+      <Setter Property="Margin" Value="0,0,6,6" />
+      <Setter Property="CornerRadius" Value="20" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="2" />
+    </Style>
+    <Style Selector="Button.swatch:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Es.TextMuted}" />
+    </Style>
+    <Style Selector="Button.swatch:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="Button.swatch.selected /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="BorderBrush" Value="{DynamicResource Es.Accent}" />
+    </Style>
+    <Style Selector="Button.swatch:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+  </Application.Styles>
+</Application>

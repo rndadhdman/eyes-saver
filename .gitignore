@@ -1,0 +1,9 @@
+bin/
+obj/
+dist/
+publish/
+artifacts/
+data/
+*.user
+*.suo
+*.log

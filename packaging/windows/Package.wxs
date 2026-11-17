@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Per-machine MSI for Eyes Saver. Installs the single EyesSaver.exe to Program Files with a Start
+  menu shortcut. Settings are per user in %LOCALAPPDATA%\EyesSaver (installed copies have no
+  "data" folder next to the exe). Upgrades replace older versions; a running copy is closed first.
+
+  The UpgradeCode must never change, or new versions install side by side instead of upgrading.
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+  <Package Name="Eyes Saver"
+           Manufacturer="Eyes Saver"
+           Version="$(var.ProductVersion)"
+           UpgradeCode="EA699270-B244-4DA6-97C9-3782796C6BA4"
+           Scope="perMachine"
+           Compressed="yes">
+
+    <SummaryInformation Description="Eyes Saver $(var.ProductVersion) installer" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Eyes Saver is already installed." AllowSameVersionUpgrades="yes" />
+    <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
+
+    <!-- Advertised shortcuts need an icon whose Id ends in the key file's extension (ICE50).
+         The source is the .ico, not the exe: an Icon embeds its whole source file. -->
+    <Icon Id="EyesSaver.exe" SourceFile="$(var.IconFile)" />
+    <Property Id="ARPPRODUCTICON" Value="EyesSaver.exe" />
+    <Property Id="ARPNOMODIFY" Value="1" />
+
+    <!-- Close a running Eyes Saver before files are replaced or removed. The app exits cleanly on
+         WM_CLOSE (it saves settings and removes the tint); if it does not, it is ended. -->
+    <util:CloseApplication Id="CloseEyesSaver" Target="EyesSaver.exe"
+                           CloseMessage="yes" RebootPrompt="no" Timeout="5" TerminateProcess="0" />
+
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="Eyes Saver" />
+    </StandardDirectory>
+
+    <ComponentGroup Id="AppFiles" Directory="INSTALLFOLDER">
+      <Component Id="EyesSaverExe" Bitness="always64">
+        <File Id="EyesSaverExe" Source="$(var.PublishDir)EyesSaver.exe" KeyPath="yes">
+          <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuFolder" Name="Eyes Saver"
+                    Description="Tint every display to cut glare and blue light"
+                    WorkingDirectory="INSTALLFOLDER" Icon="EyesSaver.exe" Advertise="yes" />
+        </File>
+      </Component>
+    </ComponentGroup>
+
+    <StandardDirectory Id="ProgramMenuFolder" />
+
+    <Feature Id="Main" Title="Eyes Saver" Level="1">
+      <ComponentGroupRef Id="AppFiles" />
+    </Feature>
+  </Package>
+</Wix>

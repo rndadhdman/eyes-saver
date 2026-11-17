@@ -1,0 +1,25 @@
+[Desktop Entry]
+Type=Application
+Name=Eyes Saver
+GenericName=Screen Tint
+Comment=Tint every display to cut glare and blue light
+Exec=eyessaver
+Icon=io.github.eyessaver.EyesSaver
+Terminal=false
+Categories=Utility;Accessibility;
+Keywords=tint;night;blue light;dim;overlay;eyes;filter;
+StartupNotify=false
+SingleMainWindow=true
+Actions=Toggle;Stronger;Weaker;
+
+[Desktop Action Toggle]
+Name=Pause or resume tint
+Exec=eyessaver --toggle
+
+[Desktop Action Stronger]
+Name=Stronger tint
+Exec=eyessaver --stronger
+
+[Desktop Action Weaker]
+Name=Weaker tint
+Exec=eyessaver --weaker
